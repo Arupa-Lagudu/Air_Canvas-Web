@@ -1,4 +1,5 @@
 import AirCanvas from "./airCanvas/index";
+import "./index.css"
 
 function App() {
   return (
