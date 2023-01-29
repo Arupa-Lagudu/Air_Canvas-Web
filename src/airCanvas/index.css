@@ -1,0 +1,75 @@
+
+
+.white-board{
+    background-color: white;
+    translate:0.5%;
+    background-size: cover;
+    width:98vw;    
+    height:60vh;
+}
+
+.bottom-container{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: space-between;
+    width:90vw */
+    align-items: flex-end;
+    justify-content: space-evenly;    
+    height:25vh;
+    width:90vw;
+
+}
+.bottom-inner-container{
+    display: flex;
+    flex-direction: column;    
+    justify-content: space-evenly;    
+    height:40vh;
+    width:100%
+    
+}
+
+.screenshot-btn{
+    background-color: green;
+    color:white;
+    padding:15px;
+    width:13%;
+    
+    
+    font-size: 16px;
+    border: 0px;
+    /* border:2px solid pink; */
+    font-weight: bold;
+    /* box-shadow: 0px 0px 19px 14px; */
+    box-shadow: 0px 0px 27px 6px;
+    cursor: pointer;
+    border-radius: 5px;
+   
+    
+}
+
+.screenshot-btn:hover{
+        background-color:#12bdb2;
+    }
+.stream-btn:hover{
+    background-color:blue;
+
+}
+.clear-btn{
+    background-color: red;
+    color:white;
+    padding:15px;
+    width:13%;
+    font-size: 16px;
+    border: 0px;
+    /* border:2px solid pink; */
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    /* box-shadow: 0px 0px 19px 14px; */
+    box-shadow: 0px 0px 27px 6px;
+    
+}
+.clear-btn:hover{
+    background-color: orange;
+}
