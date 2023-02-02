@@ -13,7 +13,6 @@ import "./App.css";
 import AirCanvas from "./components/airCanvas";
 import DashboardLayout from "./components/DashboardLayout";
 import HomePage from "./components/DashboardLayout/homepage";
-import { theme } from "./components/Styles";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -29,32 +28,23 @@ const SidebarLayout = () => (
 );
 
 function App() {
-   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <Box>
-          <Router>
-              <div>
-                <Box
-                  component="main"
-                  sx={{ display: "flex", padding: "48px 24px 24px" }}
-                >
-                  <Routes>
-                    <Route element={<SidebarLayout />}>
-                    <Route
-                        path="/"
-                        element={<HomePage />}/>
-                    <Route
-                        path="/air-canvas"
-                        element={<AirCanvas />}/>
-                    </Route>
-                  </Routes>
-                </Box>
-              </div>
-          </Router>
-        </Box>
-      </div>
-    </ThemeProvider>
+  return (
+    <div className="App">
+      <Box>
+        <Router>
+          <div>
+            <Box component="main" style={{ backgroundColor: "#d2d2da",height:'100vh' }}>
+              <Routes>
+                <Route element={<SidebarLayout />}>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/air-canvas" element={<AirCanvas />} />
+                </Route>
+              </Routes>
+            </Box>
+          </div>
+        </Router>
+      </Box>
+    </div>
   );
 }
 

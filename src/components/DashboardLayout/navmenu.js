@@ -1,6 +1,7 @@
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Logout from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
+import {alpha } from '@mui/material/styles';
 import NotificationsActiveOutlinedIcon from "@mui/icons-material/NotificationsActiveOutlined";
 import { Alert, Box, Snackbar } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
@@ -17,40 +18,55 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import {useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../images/canvalogo.jpg";
+import Logo from "../../images/canvalogo1.png";
 import IconBreadcrumbs from "./breadcrumb";
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
 
-export default function AccountMenu({
-  handleDrawerOpen,
-  handleDrawerClose,
-  navMenu,
-}) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const navigate = useNavigate();
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
 
-  const [notification, setNotification] = useState(false);
-  const [msg, setMsg] = useState("");
-  const [aType, setAType] = useState("info");
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
 
-  const handleCloseNotification = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setNotification(false);
-  };
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}));
 
-  const logOut = () => {
-    localStorage.removeItem("userTestDataManagement");
-    navigate("/");
-  };
-
+export default function AccountMenu() {
+  
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
     height: 34,
@@ -124,44 +140,17 @@ export default function AccountMenu({
         >
           <Grid item sm={3}>
             <Box className="logoSec">
-              <Box>
-                {!navMenu ? (
-                  <IconButton
-                    className="menuBtn"
-                    color="inherit"
-                    size="small"
-                    aria-label="open drawer"
-                    onClick={() => {
-                      handleDrawerOpen(true);
-                    }}
-                    edge="start"
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                ) : (
-                  <IconButton
-                    size="small"
-                    onClick={() => {
-                      handleDrawerClose(false);
-                    }}
-                  >
-                    <ChevronLeftIcon />
-                  </IconButton>
-                )}
-              </Box>
-
-              <img src={Logo} width="30" alt={"logo-notavailable"} />
-              <Typography>Canva</Typography>
+              <img src={Logo} width="100" height="" alt={"logo-notavailable"} />
             </Box>
           </Grid>
 
-          <Grid item xs={8} sm={6} textAlign="center">
+          {/* <Grid item xs={8} sm={6} textAlign="center">
             <IconBreadcrumbs />
-          </Grid>
+          </Grid> */}
           <Grid
             item
             xs={4}
-            sm={3}
+            sm={8}
             sx={{
               flexGrow: 1,
               display: "flex",
@@ -169,106 +158,17 @@ export default function AccountMenu({
               alignItems: "flex-end",
             }}
           >
-            <Box className="themeSwitch">
-              <MaterialUISwitch
-                checked={mode === "dark" ? false : true}
-                onClick={colorMode.toggleColorMode}
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
               />
-            </Box>
-            <Typography sx={{ minWidth: 30, fontSize: 25 }}>
-              <Badge badgeContent={4} color="success">
-                <NotificationsActiveOutlinedIcon />
-              </Badge>
-            </Typography>
-
-            <Tooltip title="Account settings">
-              <IconButton
-                onClick={handleClick}
-                size="small"
-                sx={{ ml: 2 }}
-                aria-controls={open ? "account-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-              >
-                <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              anchorEl={anchorEl}
-              id="account-menu"
-              open={open}
-              onClose={handleClose}
-              onClick={handleClose}
-              PaperProps={{
-                elevation: 0,
-                sx: {
-                  overflow: "visible",
-                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                  mt: 1.5,
-                  "& .MuiAvatar-root": {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 0,
-                  },
-                  "&:before": {
-                    content: '""',
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: "background.paper",
-                    transform: "translateY(-50%) rotate(45deg)",
-                    zIndex: 0,
-                  },
-                },
-              }}
-              transformOrigin={{ horizontal: "right", vertical: "top" }}
-              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-            >
-              <MenuItem onClick={logOut}>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                Logout
-              </MenuItem>
-            </Menu>
+            </Search>
           </Grid>
         </Grid>
-      </Box>
-      <Box
-        sx={{
-          "& .MuiSnackbar-root": { top: "48px" },
-        }}
-      >
-        <Snackbar
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          open={notification}
-          autoHideDuration={40000}
-          onClose={handleCloseNotification}
-        >
-          <Alert
-            severity={aType}
-            variant="filled"
-            sx={{ width: "100%" }}
-            onClose={handleCloseNotification}
-          >
-            {msg.message}{" "}
-            {msg.testValidationId && (
-              <Link
-                to={
-                  "/test-hub?viewResult=true&viewResultId=" +
-                  msg.testValidationId
-                }
-                className="linkCus"
-              >
-                View Results
-              </Link>
-            )}
-          </Alert>
-        </Snackbar>
       </Box>
     </React.Fragment>
   );
