@@ -9,8 +9,8 @@ export default function AirCanvas(){
     const StartairCanvas = () =>{
         ApiService.airCanvas().then(
             response =>{
-                console.log(response.data);
-                setCanvas(response.data);
+                console.log(response.data.path);
+                setCanvas(response.data.path);
             },
             err =>{
                 console.log(err.response);
@@ -42,11 +42,11 @@ export default function AirCanvas(){
             Get Started
         </Button>
         <Button variant="contained"  box sx={{width:'200px',fontSize:'16px',boxShadow:'9'}} color='info'>
-            Take Screenshot
+            Save Data
         </Button>
-        <Button variant="contained" box sx={{width:'200px',fontSize:'17px',boxShadow:'9'}} color='error'>
+        {/* <Button variant="contained" box sx={{width:'200px',fontSize:'17px',boxShadow:'9'}} color='error'>
             Clear
-        </Button>
+        </Button> */}
         </Box>
         </Grid>
 

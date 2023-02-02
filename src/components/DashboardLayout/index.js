@@ -79,7 +79,7 @@ export default function DashboardLayout() {
           >
           </Typography> */}
           <Box sx={{ flexGrow: 1}}>
-          <img src={Logo} width="100" height="" alt={"logo-notavailable"} />
+          <img src={Logo} width="120" height="" alt={"logo-notavailable"} />
           </Box>
           <IconBreadcrumbs/>
           <Search>
