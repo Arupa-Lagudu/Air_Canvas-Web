@@ -61,40 +61,14 @@ export default function DashboardLayout() {
   return (
     <Box>
       <AppBar 
-        style={{backgroundColor:"#303044", height: '300px', boxShadow:'none'}}
+        style={{backgroundColor:"#303044", height: '170px', boxShadow:'none'}}
         position='static'>
-        <Box style={{display:'flex', justifyContent:'center', marginTop: '100px', marginBottom:'50px'}}>
+        <Box style={{display:'flex', justifyContent:'center', marginTop: '35px'}}>
         <Link to='/'><img src={Logo} width="250" alt={"logo-notavailable"} /></Link>
         </Box>
-        <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <HomeRoundedIcon fontSize='large'/>
-          </IconButton> */}
-          {/* <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-          </Typography> */}
-          {/* <Box> */}
+        <Toolbar
+        >
           <IconBreadcrumbs/>
-          {/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search> */}
-          {/* </Box> */}
         </Toolbar>
       </AppBar>
     </Box>

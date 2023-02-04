@@ -1,57 +1,67 @@
-import { BorderColor } from "@mui/icons-material";
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { useState, useEffect } from "react"
+import { Box, Button, Grid } from "@mui/material";
+import { blue } from "@mui/material/colors";
+import { useState} from "react"
 import ApiService from "../../app.services"
+import Loading from "../loader";
 
 export default function AirCanvas(){
     const [canvas, setCanvas] = useState();
+    const[load, setLoad] = useState(false);
 
     const StartairCanvas = () =>{
+        setLoad(true);
         ApiService.airCanvas().then(
             response =>{
                 console.log(response.data.path);
                 setCanvas(response.data.path);
+                setLoad(false);
             },
             err =>{
                 console.log(err.response);
+                setLoad(false);
             }
         )
       }
 
     return(
-        <Grid container sx={{paddingLeft:15,flexGrow: 1,
-            display: "flex",
-            flexDirection:'column',
-            justifyContent: "flex-start",backgroundColor:'#d2d2da'}}
+        <Grid container 
+        sx={{backgroundColor:'#d2d2da'}}
         >
-        <Grid sm={6}
-          sx={{display: "flex",
-          justifyContent: "center",
-          mb:5 }}>
-          {/* <Typography component="h6"> Start the Air Canvas Demo!!!!</Typography> */}
-        </Grid>
-        <img src={canvas} width="50%" height={'550px'}/>
-        <Grid item width={'50%'}  my={8}>
-        <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}} >
-        <Button 
+        {!canvas ? 
+        <Grid sm={12} sx={{display: 'flex', justifyContent: 'center', mt: 20}}>
+        <Box style={{display: 'flex', justifyContent: 'center', width: '200px', height: '200px', backgroundColor: "#a9a9a9", borderRadius: '100%'}}>
+          <Button 
           variant="contained" 
-          style={{width:'200px',fontSize:'17px',backgroundColor: 'rgb(44 61 204 / 47%',
-          boxshadow: 'none'}}  
-          color='success'
+          style={{width: '150px', height: '150px', fontSize:'15px',backgroundColor: 'rgb(44 61 204 / 47%', fontFamily: 'emoji', borderRadius: '100%', marginTop: '25px'}}  
           onClick={()=>{StartairCanvas()}}
         >
             Start Canvasing
         </Button>
-        <Button variant="contained"  box sx={{width:'200px',fontSize:'16px',boxShadow:'9'}} color='info'>
-            Save Data
-        </Button>
-        {/* <Button variant="contained" box sx={{width:'200px',fontSize:'17px',boxShadow:'9'}} color='error'>
-            Clear
-        </Button> */}
         </Box>
         </Grid>
-
-          {/* <iframe style= {{border: "2px solid #4593c6"}} title="canvas" src= {canvas} height="500" width="1000" />      */}
+        :
+        <>
+        {load ? <Loading /> : <>
+        <Grid sm={7}
+          sx={{display: "flex", justifyContent: "center", mb:5,mt: 5 }}>
+          <img src={canvas} height={'550px'}/>
+        </Grid>
+        <Grid  sm={5} sx={{display: "flex", justifyContent: 'center', paddingY: 18}}>
+        <Box sx={{display: "flex", flexDirection: 'column', justifyContent: 'space-evenly', mr: 20}}>
+        <Button variant="contained" style={{width: '175px', fontSize:'15px',backgroundColor: '#026cd1ad', fontFamily: 'emoji'}}>
+            Save Data
+        </Button>
+        <Button 
+          variant="contained" style={{width: '175px', fontSize:'15px',backgroundColor: 'rgb(209 97 2 / 62%)', fontFamily: 'emoji'}}
+        //   onClick={()=>{}}
+          >
+            End Session
+        </Button>
+        </Box>
+        </Grid>
+        </>}
+        </>
+        }
         </Grid>
     );
 }

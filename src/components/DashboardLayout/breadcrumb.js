@@ -11,13 +11,11 @@ import "./breadcrumb.css"
 export default function IconBreadcrumbs() {
   const routes = useLocation().pathname
   return (
-    // <div role="presentation" className='header-container'>
-      <Box sx={{ display: 'flex',flexDirection:'row', alignItems: 'center', justifyContent:'center',width:'100%', columnGap: 5}}>
-        <Link id="link" style={{fontSize:"18px",'&:hover':{color:'green'},color:routes ==="/" ? 'rgb(44 177 204)' :'white',textDecoration:'none'}}  to={'/'}>Home</Link>  
-        <Link id="link" to="/air-canvas" style={{fontSize:"18px",color:routes ==="/air-canvas"?'rgb(44 177 204)':'white',textDecoration:'none'}} > Air Canvasing </Link>
-        <Link id="link" to="/about" style={{fontSize:"18px",color:routes ==="/about"?'rgb(44 177 204)':'white',textDecoration:'none'}} > About </Link>
+      <Box sx={{ display: 'flex',flexDirection:'row', alignItems: 'center', justifyContent:'end',width:'100%', columnGap: 8, marginRight: 6}}>
+        <Link id="link" style={{fontSize:"18px", fontFamily: 'auto' ,'&:hover':{color:'green'},color:routes ==="/" ? 'rgb(44 177 204)' :'white',textDecoration:'none'}}  to={'/'}>Home</Link>  
+        <Link id="link" to="/air-canvas" style={{fontSize:"18px", fontFamily: 'auto', color:routes ==="/air-canvas"?'rgb(44 177 204)':'white',textDecoration:'none'}} > Air Canvasing </Link>
+        <Link id="link" to="/" style={{fontSize:"18px", fontFamily: 'auto', color:routes ==="/about"?'rgb(44 177 204)':'white',textDecoration:'none'}} > About </Link>
 
       </Box>
-    // </div>
   );
 }
