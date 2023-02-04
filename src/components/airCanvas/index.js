@@ -32,14 +32,15 @@ export default function AirCanvas(){
         </Grid>
         <img src={canvas} width="50%" height={'550px'}/>
         <Grid item width={'50%'}  my={8}>
-            <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}} >
+        <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}} >
         <Button 
           variant="contained" 
-          sx={{width:'200px',fontSize:'17px',boxShadow:'0px 0px 24px 3px grey'}}  
+          style={{width:'200px',fontSize:'17px',backgroundColor: 'rgb(44 61 204 / 47%',
+          boxshadow: 'none'}}  
           color='success'
           onClick={()=>{StartairCanvas()}}
         >
-            Get Started
+            Start Canvasing
         </Button>
         <Button variant="contained"  box sx={{width:'200px',fontSize:'16px',boxShadow:'9'}} color='info'>
             Save Data

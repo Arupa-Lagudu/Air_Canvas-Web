@@ -12,6 +12,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import Logo from '../../images/canvalogo.png'
 import { Breadcrumbs } from '@mui/material';
 import IconBreadcrumbs from './breadcrumb';
+import {Link } from "react-router-dom";
+import { BoySharp } from '@mui/icons-material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,8 +61,11 @@ export default function DashboardLayout() {
   return (
     <Box>
       <AppBar 
-        style={{backgroundColor:"#303044"}}
+        style={{backgroundColor:"#303044", height: '300px', boxShadow:'none'}}
         position='static'>
+        <Box style={{display:'flex', justifyContent:'center', marginTop: '100px', marginBottom:'50px'}}>
+        <Link to='/'><img src={Logo} width="250" alt={"logo-notavailable"} /></Link>
+        </Box>
         <Toolbar>
           {/* <IconButton
             size="large"
@@ -78,11 +83,9 @@ export default function DashboardLayout() {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
           </Typography> */}
-          <Box sx={{ flexGrow: 1}}>
-          <img src={Logo} width="120" height="" alt={"logo-notavailable"} />
-          </Box>
+          {/* <Box> */}
           <IconBreadcrumbs/>
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -90,7 +93,8 @@ export default function DashboardLayout() {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
+          {/* </Box> */}
         </Toolbar>
       </AppBar>
     </Box>
